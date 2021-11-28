@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mk.js</title>
+    <script src="src/mk.js"></script>
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+    <div id="arena">
+    </div>
+    <script>
+        (function () {
+
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+            (function () {
+                
+                var startGame = function () {
+                    $('arena').style.visibility = 'visible';
+                };
+                
+                var options = {
+                    arena: {
+                        container: document.getElementById('arena'),
+                        arena: mk.arenas.types.THRONE_ROOM
+                    },
+                    fighters: [{ name: 'kano' }, { name: 'subzero' }],
+                    callbacks: {
+                        attack: function (f, o, l) {
+                            console.log(o)
+                        }
+
+                    },
+                    gameName: 'test',
+                    gameType: 'multiplayer'
+                };
+
+                function startNewGame() {
+                    mk.start(options).ready(function () {
+                        startGame();
+                    });
+                }
+                
+                startNewGame();
+                
+            }());
+
+        }());
+    </script>
+</body>
+</html>
