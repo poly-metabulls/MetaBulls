@@ -84,11 +84,11 @@ window.addEventListener('DOMContentLoaded',async () => {
             return
         }
         let cid =await web3.eth.net.getId()
-        if(cid!=44787){
+        if(cid!=80001){
             $("#loader").hide()
             $("#loadertx").hide()
             $("#wfh").show()
-            toast("Please Switch To Celo alfajores tesnet!")
+            toast("Please Switch To Mumbai Tesnet!")
             return
         }
         let game = new MyScene('renderCanvas');

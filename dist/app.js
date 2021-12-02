@@ -8530,11 +8530,11 @@ window.addEventListener('DOMContentLoaded', function () { return __awaiter(void 
                         return [4 /*yield*/, web3.eth.net.getId()];
                     case 2:
                         cid = _a.sent();
-                        if (cid != 44787) {
+                        if (cid != 80001) {
                             $("#loader").hide();
                             $("#loadertx").hide();
                             $("#wfh").show();
-                            toast("Please Switch To Celo alfajores tesnet!");
+                            toast("Please Switch To Mumbai Tesnet!");
                             return [2 /*return*/];
                         }
                         game = new _my_scene__WEBPACK_IMPORTED_MODULE_0__["default"]('renderCanvas');
@@ -8646,6 +8646,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 var abi = __webpack_require__(/*! ../abi/1.json */ "./abi/1.json");
+var contract_address = "0xE4c925499c44639CB11122986444AC595f34544D";
 var Buffer = __webpack_require__(/*! buffer */ "./node_modules/node-libs-browser/node_modules/buffer/index.js").Buffer;
 var ieee754 = __webpack_require__(/*! ieee754 */ "./node_modules/ieee754/index.js");
 var MyScene = /** @class */ (function () {
@@ -8653,7 +8654,7 @@ var MyScene = /** @class */ (function () {
         this._playerList = {};
         this._ws = null;
         this._join_status = false;
-        this._roomId = "celogamevers";
+        this._roomId = "polygonverse";
         this._matches = {};
         this._rcolor = {};
         this._color = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["Color3"](0, 0, 0);
@@ -8754,7 +8755,7 @@ var MyScene = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         if (!(this.curr_nft != null && this.mynfts.length > 0)) return [3 /*break*/, 4];
-                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669")];
+                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D")];
                     case 1:
                         contract = _a.sent();
                         return [4 /*yield*/, window.web3.eth.getAccounts()];
@@ -8995,7 +8996,7 @@ var MyScene = /** @class */ (function () {
                         bn = _b.sent();
                         console.log("BlockNumber:" + bn);
                         query = Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["gql"])(templateObject_1 || (templateObject_1 = __makeTemplateObject(["{\n            games(where: { startblock_gt: ", "}){\n              id\n              token0\n              token1\n              startblock\n              particiapte0 {\n                  id\n                }\n                participate1 {\n                  id\n                }\n              winner {\n                id\n              }\n            }\n          }\n        "], ["{\n            games(where: { startblock_gt: ", "}){\n              id\n              token0\n              token1\n              startblock\n              particiapte0 {\n                  id\n                }\n                participate1 {\n                  id\n                }\n              winner {\n                id\n              }\n            }\n          }\n        "])), bn - 310);
-                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)];
+                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)];
                     case 2:
                         data = _b.sent();
                         console.log(JSON.stringify(data));
@@ -9065,7 +9066,7 @@ var MyScene = /** @class */ (function () {
                         bn = _b.sent();
                         console.log("BlockNumber:" + bn);
                         query = Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["gql"])(templateObject_2 || (templateObject_2 = __makeTemplateObject(["{\n            games(where: {startblock_gt:", "}){\n        \n          id\n          token0\n            token1\n            startblock\n            particiapte0 {\n                id\n              }\n              participate1 {\n                id\n              }\n          }\n        }\n        "], ["{\n            games(where: {startblock_gt:", "}){\n        \n          id\n          token0\n            token1\n            startblock\n            particiapte0 {\n                id\n              }\n              participate1 {\n                id\n              }\n          }\n        }\n        "])), bn);
-                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)];
+                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)];
                     case 2:
                         data = _b.sent();
                         console.log(JSON.stringify(data));
@@ -9620,7 +9621,7 @@ var MyScene = /** @class */ (function () {
                 this._scene.registerBeforeRender(function () {
                     ctx1.fillStyle = "black";
                     ctx1.fillRect(0, 0, 512, 256);
-                    ctx1.font = '70px niko';
+                    ctx1.font = '60px niko';
                     ctx1.fillStyle = "white";
                     ctx1.fillText("#" + _this._currentBlock, 20, 120);
                     _this.brdcanvas.update();
@@ -9878,24 +9879,6 @@ var MyScene = /** @class */ (function () {
                 this._cc.setNoFirstPerson(false);
                 this._cc.setStepOffset(0.4);
                 this._cc.setSlopeLimit(30, 60);
-                //this._cc.setAnimationGroups(agMap)
-                //this._cc.setIdleAnim(agMap["tpose"], 1, true);
-                /*this._cc.setTurnLeftAnim(agMap["tpose"], 0.5, true);
-                this._cc.setTurnRightAnim(agMap["tpose"], 0.5, true);
-                this._cc.setWalkBackAnim(null, 0.5, true);
-                this._cc.setIdleJumpAnim(null, 0.5, false);
-                this._cc.setRunJumpAnim(null, 0.6, false);
-                this._cc.setFallAnim(null, 2, false);
-                this._cc.setSlideBackAnim(null, 1, false);*/
-                /*this._cc.setIdleAnim("idle", 1, true);
-                this._cc.setTurnLeftAnim("turnLeft", 0.5, true);
-                this._cc.setTurnRightAnim("turnRight", 0.5, true);
-                this._cc.setWalkBackAnim("walkBack", 0.5, true);
-                this._cc.setIdleJumpAnim("idleJump", 0.5, false);
-                this._cc.setRunJumpAnim("runJump", 0.6, false);
-                this._cc.setFallAnim("fall", 2, false);
-                this._cc.setSlideBackAnim("slideBack", 1, false);*/
-                //this._cc.enableBlending(0.05);
                 this._cc.start();
                 return [2 /*return*/];
             });
@@ -9908,7 +9891,7 @@ var MyScene = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         query = Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["gql"])(templateObject_3 || (templateObject_3 = __makeTemplateObject(["{nfts(where: {id:", " }) {\n            uri\n            power\n          }}\n        "], ["{nfts(where: {id:", " }) {\n            uri\n            power\n          }}\n        "])), id);
-                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)];
+                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)];
                     case 1:
                         nfts = _a.sent();
                         try {
@@ -9936,7 +9919,7 @@ var MyScene = /** @class */ (function () {
                         adrs = _b.sent();
                         query = Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["gql"])(templateObject_4 || (templateObject_4 = __makeTemplateObject(["{\n            users(where: {id: ", "}){\n                    nftlist {\n                        id\n                        uri\n                    }\n                    dmg\n                }\n            }\n        "], ["{\n            users(where: {id: ", "}){\n                    nftlist {\n                        id\n                        uri\n                    }\n                    dmg\n                }\n            }\n        "])), JSON.stringify(adrs[0].toLowerCase()));
                         this.mynfts = [];
-                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)];
+                        return [4 /*yield*/, Object(graphql_request__WEBPACK_IMPORTED_MODULE_7__["request"])('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)];
                     case 2:
                         data = _b.sent();
                         console.log(JSON.stringify(data));
@@ -10087,7 +10070,7 @@ var MyScene = /** @class */ (function () {
                                         return [4 /*yield*/, window.web3.eth.getAccounts()];
                                     case 1:
                                         ad = _a.sent();
-                                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669")];
+                                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D")];
                                     case 2:
                                         contract = _a.sent();
                                         return [4 /*yield*/, contract.methods.PlaceBet(data['id'], Number(plr) ? true : false).send({
@@ -10109,7 +10092,7 @@ var MyScene = /** @class */ (function () {
                                         return [4 /*yield*/, window.web3.eth.getAccounts()];
                                     case 1:
                                         ad = _a.sent();
-                                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669")];
+                                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D")];
                                     case 2:
                                         contract = _a.sent();
                                         return [4 /*yield*/, contract.methods.winclaim(data['id']).send({
@@ -10130,7 +10113,7 @@ var MyScene = /** @class */ (function () {
                                         return [4 /*yield*/, window.web3.eth.getAccounts()];
                                     case 1:
                                         ad = _a.sent();
-                                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669")];
+                                        return [4 /*yield*/, new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D")];
                                     case 2:
                                         contract = _a.sent();
                                         if (!(data['addr1'].toLowerCase() == ad[0].toLowerCase())) return [3 /*break*/, 4];
@@ -10158,7 +10141,7 @@ var MyScene = /** @class */ (function () {
                     case 2:
                         _b.sent();
                         this.setHandlerV();
-                        GRAPHQL_ENDPOINT = "wss://cello-graphnode.overclockedbrains.co:9000/subgraphs/name/MetaBulls";
+                        GRAPHQL_ENDPOINT = "wss://api.thegraph.com/subgraphs/name/harshu4/metabulls";
                         query = "subscription   {\n            games{\n              id\n              startblock\n              token0\n              token1\n              particiapte0 {\n                id\n              }\n              participate1 {\n                id\n              }\n            }\n          }\n          ";
                         client = new graphql_subscriptions_client__WEBPACK_IMPORTED_MODULE_6__["SubscriptionClient"](GRAPHQL_ENDPOINT, {
                             reconnect: true,
@@ -10307,7 +10290,7 @@ var MyScene = /** @class */ (function () {
     };
     MyScene.prototype.loadMeshes = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var Icosphere, _i, _a, m, Icosphere, _b, _c, m, Icosphere, _d, _e, m, mat, gl, okex, anim1, Icosphere, _f, _g, m, groundWidth, groundHeight, ground, txt, bmat, b, pbr_stage0, pbr_stage1, stage_mesh_0, stage_mesh_1, cylinder0, glass, gl;
+            var Icosphere, _i, _a, m, Icosphere, _b, _c, m, Icosphere, _d, _e, m, polygon, anim1, Icosphere, _f, _g, m, groundWidth, groundHeight, ground, txt, bmat, b, pbr_stage0, pbr_stage1, stage_mesh_0, stage_mesh_1, cylinder0, glass, gl;
             return __generator(this, function (_h) {
                 switch (_h.label) {
                     case 0: return [4 /*yield*/, babylonjs__WEBPACK_IMPORTED_MODULE_0__["SceneLoader"].ImportMeshAsync(null, "", "dome.glb", this._scene)];
@@ -10328,23 +10311,17 @@ var MyScene = /** @class */ (function () {
                             m = _c[_b];
                             console.log(m.name);
                         }
-                        return [4 /*yield*/, babylonjs__WEBPACK_IMPORTED_MODULE_0__["SceneLoader"].ImportMeshAsync(null, "", "CELO.glb", this._scene)];
+                        return [4 /*yield*/, babylonjs__WEBPACK_IMPORTED_MODULE_0__["SceneLoader"].ImportMeshAsync(null, "", "clover.glb", this._scene)];
                     case 3:
                         Icosphere = _h.sent();
                         for (_d = 0, _e = Icosphere.meshes; _d < _e.length; _d++) {
                             m = _e[_d];
                             m.checkCollisions = false;
-                            if (m.name == "Text.001") {
-                                mat = m.material;
-                                mat.emissiveColor = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["Color3"](0.1, 0.1, 0.1);
-                                gl = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["GlowLayer"]("glowx", this._scene);
-                                gl.addIncludedOnlyMesh(m);
-                                gl.intensity = 1;
-                            }
                         }
-                        okex = Icosphere.meshes[0];
-                        okex.scaling = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["Vector3"](3, 3, 3);
-                        okex.position.z = 5;
+                        polygon = Icosphere.meshes[0];
+                        polygon.scaling = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["Vector3"](3, 3, 3);
+                        polygon.position.z = 5;
+                        polygon.scaling = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["Vector3"](3, 3, 3);
                         anim1 = Icosphere.animationGroups[1];
                         anim1.start(true, 1.0, anim1.from, anim1.to, false);
                         return [4 /*yield*/, babylonjs__WEBPACK_IMPORTED_MODULE_0__["SceneLoader"].ImportMeshAsync(null, "", "digital_board.glb", this._scene)];

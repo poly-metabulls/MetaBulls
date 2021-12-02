@@ -26,7 +26,7 @@ import {
     StandardMaterial
 } from 'babylonjs/Materials/standardMaterial';
 const abi = require('../abi/1.json')
-
+const contract_address = "0xE4c925499c44639CB11122986444AC595f34544D"
 var Buffer = require('buffer').Buffer
 var ieee754 = require('ieee754')
 
@@ -40,7 +40,7 @@ export default class MyScene {
     private _playerList = {};
     private _ws = null;
     private _join_status = false;
-    private _roomId = "celogamevers"
+    private _roomId = "polygonverse"
     private _matches = {}
     private _rcolor = {}
     private _color: BABYLON.Color3 = new BABYLON.Color3(0, 0, 0)
@@ -145,7 +145,7 @@ export default class MyScene {
 
         $("#matchit").click(async () => {
             if (this.curr_nft != null && this.mynfts.length > 0) {
-                let contract = await new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669");
+                let contract = await new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D");
                 let a = await window.web3.eth.getAccounts();
                 await contract.methods.Playerpart(this.mynfts[this.curr_nft][2]).send({
                     from: a[0]
@@ -373,7 +373,7 @@ export default class MyScene {
             }
           }
         `
-        let data = await request('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)
+        let data = await request('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)
         console.log(JSON.stringify(data))
         for (let m of data["games"]) {
             let d1 = await this.get_nft(m.token0)
@@ -432,7 +432,7 @@ export default class MyScene {
           }
         }
         `
-        let data = await request('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)
+        let data = await request('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)
         console.log(JSON.stringify(data))
         for (let m of data["games"]) {
             let d1 = await this.get_nft(m.token0)
@@ -941,7 +941,7 @@ export default class MyScene {
             ctx1.fillStyle = "black";
             ctx1.fillRect(0, 0, 512, 256);
 
-            ctx1.font = '70px niko';
+            ctx1.font = '60px niko';
             ctx1.fillStyle = "white";
             ctx1.fillText("#" + this._currentBlock, 20, 120);
 
@@ -1330,28 +1330,6 @@ export default class MyScene {
         this._cc.setNoFirstPerson(false);
         this._cc.setStepOffset(0.4);
         this._cc.setSlopeLimit(30, 60);
-
-        //this._cc.setAnimationGroups(agMap)
-
-        //this._cc.setIdleAnim(agMap["tpose"], 1, true);
-        /*this._cc.setTurnLeftAnim(agMap["tpose"], 0.5, true);
-        this._cc.setTurnRightAnim(agMap["tpose"], 0.5, true);
-        this._cc.setWalkBackAnim(null, 0.5, true);
-        this._cc.setIdleJumpAnim(null, 0.5, false);
-        this._cc.setRunJumpAnim(null, 0.6, false);
-        this._cc.setFallAnim(null, 2, false);
-        this._cc.setSlideBackAnim(null, 1, false);*/
-
-        /*this._cc.setIdleAnim("idle", 1, true);
-        this._cc.setTurnLeftAnim("turnLeft", 0.5, true);
-        this._cc.setTurnRightAnim("turnRight", 0.5, true);
-        this._cc.setWalkBackAnim("walkBack", 0.5, true);
-        this._cc.setIdleJumpAnim("idleJump", 0.5, false);
-        this._cc.setRunJumpAnim("runJump", 0.6, false);
-        this._cc.setFallAnim("fall", 2, false);
-        this._cc.setSlideBackAnim("slideBack", 1, false);*/
-
-        //this._cc.enableBlending(0.05);
         this._cc.start();
     }
 
@@ -1361,7 +1339,7 @@ export default class MyScene {
             power
           }}
         `
-        let nfts = await request('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)
+        let nfts = await request('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)
         try {
             return [nfts['nfts'][0]['uri'],
                 [Number(nfts['nfts'][0]['power'][0]), Number(nfts['nfts'][0]['power'][1])], id
@@ -1387,7 +1365,7 @@ export default class MyScene {
             }
         `
             this.mynfts = []
-            let data = await request('https://cello-graphnode.overclockedbrains.co/subgraphs/name/MetaBulls', query)
+            let data = await request('https://api.thegraph.com/subgraphs/name/harshu4/metabulls', query)
             console.log(JSON.stringify(data))
             if (data['users'].length > 0) {
                 let dmg = data['users'][0]['dmg']
@@ -1584,7 +1562,7 @@ export default class MyScene {
             var plr = window.prompt("Select Player (0 or 1):");
             var amnt = window.prompt("Enter Bid Amount: ");
             let ad = await window.web3.eth.getAccounts();
-            let contract = await new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669");
+            let contract = await new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D");
             await contract.methods.PlaceBet(data['id'], Number(plr) ? true : false).send({
                 from: ad[0],
                 value: Web3.utils.toWei(amnt, 'ether')
@@ -1593,7 +1571,7 @@ export default class MyScene {
         window.clickmecx = async (data) => {
             data = JSON.parse(atob(data))
             let ad = await window.web3.eth.getAccounts();
-            let contract = await new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669");
+            let contract = await new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D");
             await contract.methods.winclaim(data['id']).send({
                 from: ad[0]
             });
@@ -1603,7 +1581,7 @@ export default class MyScene {
         window.clickmec = async (data) => {
             data = JSON.parse(atob(data))
             let ad = await window.web3.eth.getAccounts();
-            let contract = await new window.web3.eth.Contract(abi, "0xeDa409417bFBcd74A9fA52b1f7c038a45F629669");
+            let contract = await new window.web3.eth.Contract(abi, "0xE4c925499c44639CB11122986444AC595f34544D");
             if (data['addr1'].toLowerCase() == ad[0].toLowerCase()) {
                 await contract.methods.claimnft(data['p1'], data['id']).send({
                     from: ad[0]
@@ -1620,7 +1598,7 @@ export default class MyScene {
 
         await this.get_my_details()
         this.setHandlerV()
-        const GRAPHQL_ENDPOINT = "wss://cello-graphnode.overclockedbrains.co:9000/subgraphs/name/MetaBulls";
+        const GRAPHQL_ENDPOINT = "wss://api.thegraph.com/subgraphs/name/harshu4/metabulls";
 
 
 
@@ -1785,27 +1763,20 @@ export default class MyScene {
 
         }
 
-        let Icosphere = await BABYLON.SceneLoader.ImportMeshAsync(null, "", "CELO.glb", this._scene);
+        let Icosphere = await BABYLON.SceneLoader.ImportMeshAsync(null, "", "clover.glb", this._scene);
         for (let m of Icosphere.meshes) {
             m.checkCollisions = false
-            if (m.name == "Text.001") {
-                let mat: PBRMaterial = m.material
-                mat.emissiveColor = new BABYLON.Color3(0.1, 0.1, 0.1)
-                var gl = new BABYLON.GlowLayer("glowx", this._scene);
-                gl.addIncludedOnlyMesh(m)
-                gl.intensity = 1
-
-            }
-
         }
 
-        let okex = Icosphere.meshes[0]
-        okex.scaling = new BABYLON.Vector3(3, 3, 3)
-        okex.position.z = 5
+        let polygon = Icosphere.meshes[0]
+        polygon.scaling = new BABYLON.Vector3(3, 3, 3)
+        polygon.position.z = 5
+        polygon.scaling = new BABYLON.Vector3(3,3,3)
+
 
         let anim1 = Icosphere.animationGroups[1] 
         anim1.start(true, 1.0, anim1.from, anim1.to, false);
-
+        
         let Icosphere = await BABYLON.SceneLoader.ImportMeshAsync(null, "", "digital_board.glb", this._scene);
         for (let m of Icosphere.meshes) {
             console.log(m.name)
